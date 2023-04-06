@@ -101,7 +101,7 @@ debugger;
   method: "POST",
         headers: {
           "Content-Type": "application/json",
-          'Authorization':'Bearer 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'
+          'Authorization':'Bearer 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'
         },
   //make sure to serialize your JSON body
   body: JSON.stringify(bodyy)
