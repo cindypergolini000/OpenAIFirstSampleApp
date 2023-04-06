@@ -25,7 +25,7 @@
         <div class="invalid-feedback">Modello obbligatorio</div>
         </div>
         <div class="mb-3">
-            <label for="maxtokens" class="form-label">Max Tokens</label>
+            <label for="maxtokens" class="form-label">MaxTokens, ossia limite lunghezza del testo intesa come somma fra prompt e risposta che si vuole: grossomodo un token sono 3/4 lettere. Il limite massimo di tokens dipende dal modello</label>
            <input type="text" id="maxtokens"  class="form-control" required formControlName="maxtokens" 
            [class.invalid]="loginForm.get('maxtokens')?.touched && loginForm.get('maxtokens')?.errors?.['required']">
        </div>
@@ -36,7 +36,7 @@
             <label for="temperature" class="form-label"> Temperatura: si tratta di un indicatore che dà la misura del determinismo della risposta, che va da un minimo di zero a un massimo di 1</label>
             <input type="text" formControlName="temperature" id="temperature" class="form-control">
         </div>
-        <legend>WRITE YOUR PROMPT</legend>
+        <legend>WRITE YOUR PROMPT BELOW</legend>
         <div class="mb-3">
             <label for="prompt" class="form-label">what are you thinking?</label>
             <input formControlName="prompt" id="prompt" class="form-control" formControlName="prompt">
