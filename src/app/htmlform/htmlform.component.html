@@ -1,0 +1,49 @@
+<h2>HTML5 forms</h2>
+
+<form>
+    <label for="nome">Nome</label><br>
+    <input type="text" name="nome" id="nome">
+    <br>
+
+    <label for="cognome">Cognome</label><br>
+    <input type="text" name="cognome" id="cognome" required autocomplete="off">
+    <br>
+
+    <label for="password">Password</label><br>
+    <input type="password" name="password" id="password" maxlength="8" minlength="6">
+    <br>
+
+    <fieldset>
+        <legend>Dove vivi?</legend>
+        <input type="radio" name="stato" id="statoit" value="italia">
+        <label for="statoit"> Italia</label> <br>
+        <input type="radio" name="stato" id="statoes" value="estero">
+        <label for="statoes"> Estero</label> <br>
+    </fieldset>
+
+    <fieldset>
+        <legend>Interessi</legend>
+
+        <input type="checkbox" name="interessi" id="interessiviaggi" value="viaggi">
+        <label for="interessiviaggi"> Viaggi</label> <br>
+
+        <input type="checkbox" name="libri" id="interessilibri" value="libri">
+        <label for="interessilibri"> Libri</label> <br>
+
+        <input type="checkbox" name="interessi" id="interessisocial" value="social">
+        <label for="interessisocial"> Social Network</label> <br>
+    </fieldset>
+
+    <label for="titolostudio">Titolo di studio</label> <br>
+    <select name="titolostudio" id="titolostudio">
+        <option value="diplomato">Diploma di scuola superiore</option>
+        <option value="leaureato">Diploma di laurea</option>
+    </select>
+    <br>
+    <label for="commenti">Lasciaci un commento</label> <br>
+    <textarea name="commenti" id="commenti" cols="40" rows="4"></textarea>
+    <br>
+    <input type="submit"  value="invia">
+    <button  > submit</button>
+    <input type="reset" value="cancella">
+</form>

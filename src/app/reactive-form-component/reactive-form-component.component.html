@@ -1,0 +1,75 @@
+<h3>Completion AI playground</h3>
+<div class="row">
+    <div class="col-7">
+        <h3>Inserisci i parametri</h3>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+             <label for="model" class="form-label">Scegli il modello dal menu dropdown</label>
+             <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 Modelli
+                  <svg class="icon-expand icon icon-sm icon-light"><use href="/bootstrap-italia/dist/svg/sprites.svg#it-expand"></use></svg>
+                </button>
+                <div class="dropdown-menu  ">
+                  <div class="link-list-wrapper">
+                    <ul class="link-list">
+                      <li class="dropdown-item list-item"  (click)="setModel1()"><span>gpt-3.5-turbo-0301</span></li>
+                      <li class="dropdown-item list-item"  (click)="setModel('text-davinci-003')"><span>text-davinci-003</span></li>
+                      <li class="dropdown-item list-item"  (click)="setModel('text-davinci-002')"><span>text-davinci-002</span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            <input type="text" id="model"   class="form-control" required formControlName="model"
+            [class.invalid]="loginForm.get('model')?.touched && loginForm.get('model')?.invalid">
+        <div class="invalid-feedback">Modello obbligatorio</div>
+        </div>
+        <div class="mb-3">
+            <label for="maxtokens" class="form-label">Max Tokens</label>
+           <input type="text" id="maxtokens"  class="form-control" required formControlName="maxtokens" 
+           [class.invalid]="loginForm.get('maxtokens')?.touched && loginForm.get('maxtokens')?.errors?.['required']">
+       </div>
+       
+     
+      
+        <div class="mb-3">
+            <label for="temperature" class="form-label"> Temperatura: si tratta di un indicatore che dà la misura del determinismo della risposta, che va da un minimo di zero a un massimo di 1</label>
+            <input type="text" formControlName="temperature" id="temperature" class="form-control">
+        </div>
+        <legend>WRITE YOUR PROMPT</legend>
+        <div class="mb-3">
+            <label for="prompt" class="form-label">what are you thinking?</label>
+            <input formControlName="prompt" id="prompt" class="form-control" formControlName="prompt">
+        </div>
+     
+       <input type="submit" value="Submit"  class="btn btn-info" >
+       
+    </form>
+    </div>
+
+    <h3>Dati Form</h3>
+    <pre>{{loginForm.value| json}}</pre>
+    <h3 class="p1">Prompt history</h3>
+    <ul *ngFor="let t of oldPrompts">
+     <li class="p1"> "{{t}}"</li>
+    </ul>
+    
+    <div class="col">
+        <h3>Risposta di openAI</h3>
+        <div>
+            <ul>
+                <li>modello: {{completionResponse.model}}</li>
+                <li>Risposta:<p> {{completionResponse.choices[0].text}}</p></li>
+                
+            </ul>    
+        </div>
+      
+        <!-- <h3>Stato Form</h3>
+        <ul>
+            <li>touched: {{loginForm.touched}}</li>
+            <li>valid: {{loginForm.valid}}</li>
+            <li>dirty: {{loginForm.dirty}}</li>
+        </ul> -->
+        </div>
+
+</div>
