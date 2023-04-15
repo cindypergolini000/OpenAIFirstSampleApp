@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CompletionRequest, CompletionResponseDTO} from '../models/completionRequest';
+import { DefaultAzureCredential } from "@azure/identity";
+import { KeyVaultSecret, SecretClient } from "@azure/keyvault-secrets";
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +36,27 @@ import { CompletionRequest, CompletionResponseDTO} from '../models/completionReq
 // }
 
 
+
+
 export class UtenteServiceService {
+  
+
+
+ async getSecret():Promise<string>{
+  
+
+  const credential:DefaultAzureCredential = new DefaultAzureCredential();
+
+// Build the URL to reach your key vault
+const  vaultName:string = "keyvaultCinzia";
+const url:string= `https://${vaultName}.vault.azure.net`;
+
+// Lastly, create our secrets client and connect to the service
+ const client:SecretClient = new SecretClient(url,credential);
+ const latestSecret:KeyVaultSecret= await client.getSecret("secretCinzia");
+
+return  latestSecret.name;
+ } 
   
  promptresponses:string[]=[];
 

@@ -4,6 +4,9 @@ import { NgForm } from '@angular/forms';
 import axios from 'axios';
 import { CompletionResponseDTO } from '../models/completionRequest';
 import { UtenteServiceService } from '../services/completion-request.service';
+import {ClientSecretCredential, DefaultAzureCredential} from '@azure/identity';
+import { SecretClient, SecretClientOptions} from '@azure/keyvault-secrets';
+
 
 /*import { DatiUtente } from '../models/dati-utente';*/
 
@@ -13,6 +16,9 @@ import { UtenteServiceService } from '../services/completion-request.service';
   styleUrls: ['./reactive-form-component.component.css']
 })
 export class ReactiveFormComponentComponent implements OnInit {
+ keyvaultname:string="keyvaultname";
+ keyvaultUrl:string=""
+ credential:DefaultAzureCredential=new DefaultAzureCredential();
   oldPrompts:string[]=[];
   loginForm:FormGroup;
   completionResponse:CompletionResponseDTO;
@@ -73,15 +79,15 @@ this.completionResponse={
   
   }
 async onSubmit():Promise<void>{
-  // Variable to store ID
+  try {
 
+    const ss:string=await this.utser.getSecret();
 
 // Object for examples
 const form =  this.loginForm.value;
-debugger;
+
 const RAPIDAPI_API_URL='https://api.openai.com/v1/completions';
 // Object with RapidAPI authorization headers and Content-Type header
-
 
 console.log(form);
 const bodyy={
@@ -90,9 +96,9 @@ const bodyy={
     max_tokens  : parseInt(form.maxtokens),
     temperature  : parseInt(form.temperature)
 };
-debugger;
+
 console.log('This is the request--->',bodyy);
-debugger;
+
 // Making a POST request using an axios instance from a connected library
 //axios.post(RAPIDAPI_API_URL, form, { headers: RAPIDAPI_REQUEST_HEADERS })
   // Handle a successful response from the server
@@ -101,7 +107,7 @@ debugger;
   method: "POST",
         headers: {
           "Content-Type": "application/json",
-          'Authorization':'Bearer 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'
+          'Authorization':`Bearer ${ss}`
         },
   //make sure to serialize your JSON body
   body: JSON.stringify(bodyy)
@@ -129,6 +135,13 @@ debugger;
  
   // Catch and print errors if any
   .catch(error => {console.error('Errore sulla fetch post prompt', error);alert(JSON.stringify(error));});
+    
+  } catch (error) {
+    console.log(error)
+    
+  }
+  // Variable to store ID
+
 }
 setModel(model_:string):void{
   debugger;

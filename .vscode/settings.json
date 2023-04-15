@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/474fd2b8-aa20-4af8-8a5e-620f6e714225/resourceGroups/RGOpenAIapp/providers/Microsoft.Web/sites/webCompletion",
+    "appService.deploySubpath": "."
+}
